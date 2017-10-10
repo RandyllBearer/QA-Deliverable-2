@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//The City acts as the graph in this program. Contains Locations (Nodes) and Streets (Edges).
 public class City{
 	String name;
 	int numLocations;

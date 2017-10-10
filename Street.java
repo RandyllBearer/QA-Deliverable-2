@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//Street objects act as one-way edges in this program.
 public class Street{
 	City city;
 	String name;

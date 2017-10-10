@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-//ToDo: Upload to a GitHub repository and add Laboon + TA as collabs
 
 public class CitySim9005{
 	
@@ -12,10 +11,11 @@ public class CitySim9005{
 	* https://github.com/laboon/CS1632_Fall2017/blob/master/deliverables/2/requirements.md
 	**/
 	private static City initializeCity(){
+		//Create City (Graph)
 		City city = new City();
 		city.setName("Pittsburgh");
 		
-		//Create Locations
+		//Create Locations (Nodes)
 		Location hotel = new Location();	//hotel
 		hotel.setCity(city);
 		hotel.setName("Hotel");
@@ -40,7 +40,7 @@ public class CitySim9005{
 		outsideCity.setName("Outside City");
 		city.addLocation(outsideCity);
 		
-		//Create Streets
+		//Create Streets (Edges)
 		Street outsideCityHotel = new Street(city, "Fourth Ave.", outsideCity, hotel);
 		city.addStreet(outsideCityHotel);
 		
@@ -83,12 +83,12 @@ public class CitySim9005{
 	}
 	
 	/**
-	* Main Driver for the CitySim9005 program. Will Create a City object, add street objects
-	* to that city, then simulate 5 driver objects moving about the city.
-	* Abstracted into a graph problem. Locations are nodes, streets are one-way edges.
+	* Main Driver for the CitySim9005 program. Will Create a City object, add Street and Location objects
+	* to that city, then simulate 5 Driver objects moving about the city.
+	* Abstracted into a graph problem. Locations are nodes, Streets are one-way edges.
 	**/
 	public static void main(String[] args){
-		//Check Arguments + Create RNG(Seed)
+		//Check Arguments + Create RNG(Seed) + Initialize City (Graph)
 		int seed = 0;
 		if(args.length != 1){
 			System.out.println("ERROR: CitySim9005.java only accepts a single integer argument, program will now exit...");
@@ -101,7 +101,6 @@ public class CitySim9005{
 		}
 		Random rng = new Random(seed);
 	
-		//Initialize City
 		City mainCity = initializeCity();
 		
 		//Simulate Drivers
@@ -115,7 +114,7 @@ public class CitySim9005{
 			
 			while(!driver.getCurrentLocation().getName().equals("Outside City")){	//Iterate through Streets
 				ArrayList<Street> reachableStreets = driver.getCurrentLocation().getReachableStreets();
-				int numReachable = driver.getCurrentLocation().getNumReachableStreets();	//TEST CORRECT RANDOMNESS
+				int numReachable = driver.getCurrentLocation().getNumReachableStreets();
 				int newStreet = rng.nextInt(numReachable);	//0[inclusive] - numReachable[exclusive]
 				System.out.println(driver.getName() + " heading from " + driver.getCurrentLocation().getName() + " to " + driver.getCurrentLocation().getReachableStreets().get(newStreet).getEndLocation().getName() + " via " + driver.getCurrentLocation().getReachableStreets().get(newStreet).getName() );
 				

@@ -1,4 +1,4 @@
-
+//Driver objects traverse through the City graph in this program, from Location to Location.
 public class Driver{
 	String name;
 	Location currentLocation;

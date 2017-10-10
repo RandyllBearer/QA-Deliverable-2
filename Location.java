@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//Location objects acts as Nodes in this program.
 public class Location{
 	City city;
 	String name;
@@ -34,6 +35,7 @@ public class Location{
 		return name;
 	}
 	
+	//A "ReachableStreet" is a one-way edge which originates from this node to some other node.
 	public boolean addReachableStreet(Street newStreet){
 		if(newStreet != null){
 			reachableStreets.add(newStreet);
